@@ -24,9 +24,10 @@ class Comment(models.Model):
     text = models.TextField("Текст", max_length=1000)
     new = models.ForeignKey(News, on_delete=models.CASCADE)
     chek = models.IntegerField("Лайки", default=0)
+    like_chek = models.ManyToManyField(User, related_name="like_user")
 
     def __str__(self):
-        return self.new
+        return "{}".format(self.new)
 
     class Meta:
         verbose_name = 'Комментарий'

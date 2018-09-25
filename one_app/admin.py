@@ -1,5 +1,5 @@
 from django.contrib import admin
-from one_app.models import News
+from one_app.models import News, Comment
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(News, NewsAdmin)
+admin.site.register(Comment)

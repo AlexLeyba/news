@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
+    <div class="row">
     {{ single.title }}<br>
     {{ single.text }}<br>
     {{ single.chek }}<br>
-{#    {% for i in single.comment_set.all %}#}
-{#        {{ i.user.username }}<br>#}
-{#        {{ i.text }}#}
-{#    {% endfor %}#}
+    {#    {% for i in single.comment_set.all %}#}
+    {#        {{ i.user.username }}<br>#}
+    {#        {{ i.text }}#}
+    {#    {% endfor %}#}
+    </div>
+
     {% for i in comment %}
-        {{ i.user.username }}
-        {{ i.text }}<br>
+        <div class="row">
+            <div class="col-12">
+                {{ i.user.username }}<br>
+                {{ i.text }}<br>
+                <a href="{% url 'like_comment' post_pk=single.id pk=i.id %}"><button type="submit" class="btn btn-primary">like - {{ i.chek }}</button></a><br>
+            </div>
+        </div>
     {% endfor %}
+
+    <div class="row">
     <form action="" method="post" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
@@ -19,4 +29,5 @@
             <button type="submit" class="btn btn-primary">Отправить</button>
         {% endbuttons %}
     </form>
+    </div>
 {% endblock %}
