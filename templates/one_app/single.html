@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    {{ single.title }}<br>
+    {{ single.text }}<br>
+    {{ single.chek }}<br>
+{#    {% for i in single.comment_set.all %}#}
+{#        {{ i.user.username }}<br>#}
+{#        {{ i.text }}#}
+{#    {% endfor %}#}
+    {% for i in comment %}
+        {{ i.user.username }}
+        {{ i.text }}<br>
+    {% endfor %}
+    <form action="" method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        {% endbuttons %}
+    </form>
+{% endblock %}
