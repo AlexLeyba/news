@@ -1,5 +1,6 @@
 from django.contrib import admin
-from one_app.models import News, Comment
+from django_summernote.admin import SummernoteModelAdmin
+from .models import *
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -7,5 +8,11 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ("title", "date", "id")
 
 
-admin.site.register(News, NewsAdmin)
+class PostAdmin(SummernoteModelAdmin):
+    list_display = ("title", "date", "id")
+    summernote_fields = ('text',)
+
+
+admin.site.register(News, PostAdmin)
 admin.site.register(Comment)
+

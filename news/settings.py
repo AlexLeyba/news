@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'one_app',
     'allauth',
     'allauth.account',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,6 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',)
 
-
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -137,5 +137,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-
+SUMMERNOTE_THEME = 'bs4'
