@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
+    {{ foobar|safe }}
     <div class="row">
     {{ single.title }}<br>
-    {{ single.text }}<br>
+        <img src="{{MEDIA_URL}}{{ single.picture.url }}" alt="">
+    {{ single.text|safe }}<br>
     {{ single.chek }}<br>
     {#    {% for i in single.comment_set.all %}#}
     {#        {{ i.user.username }}<br>#}

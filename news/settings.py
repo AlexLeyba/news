@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'one_app.context_processors.category',
             ],
         },
     },
@@ -80,8 +81,8 @@ WSGI_APPLICATION = 'news.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'news',
-        'USER': 'db_user',
+        'NAME': 'new2',
+        'USER': 'user1',
         'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '',

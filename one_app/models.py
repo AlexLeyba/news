@@ -2,6 +2,18 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Category(models.Model):
+    name = models.CharField("Категория", max_length=100)
+    slug = models.SlugField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+
 class News(models.Model):
     """Статья"""
     title = models.CharField("Заголовок", max_length=300)
@@ -9,6 +21,7 @@ class News(models.Model):
     date = models.DateTimeField("дата", auto_now_add=True)
     picture = models.ImageField("Картинка", upload_to="images/", blank=True)
     chek = models.IntegerField("счетчик", default=0)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

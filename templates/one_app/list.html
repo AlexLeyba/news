@@ -9,9 +9,10 @@
 {#                    <strong class="d-inline-block mb-2 text-primary">World</strong>#}
                     <h3 class="mb-0">
                         <a class="text-dark" href="{% url 'single' pk=i.id %}">{{ i.title }}</a>
+                        <img src="{{MEDIA_URL}}{{ i.picture.url }}" alt="">
                     </h3>
                     <div class="mb-1 text-muted">{{ i.date }}</div>
-                    <p class="card-text mb-auto">{{ i.text }}</p>
+                    <p class="card-text mb-auto">{{ i.text|safe|truncatewords:100 }}</p>
                     <a href="http://bootstrap-4.ru/docs/4.1/examples/blog/#">Continue reading</a>
                 </div>
             </div>

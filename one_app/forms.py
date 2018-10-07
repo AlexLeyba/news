@@ -8,3 +8,7 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ("text",)
+
+
+class Search(forms.Form):
+    search = forms.CharField(label="Поиск", max_length=200)
