@@ -4,13 +4,9 @@
     {{ foobar|safe }}
     <div class="row">
     {{ single.title }}<br>
-        <img src="{{MEDIA_URL}}{{ single.picture.url }}" alt="">
+        <img style="width: 150px; height: 100px;" src="{{MEDIA_URL}}{{ single.picture.url }}" alt="">
     {{ single.text|safe }}<br>
     {{ single.chek }}<br>
-    {#    {% for i in single.comment_set.all %}#}
-    {#        {{ i.user.username }}<br>#}
-    {#        {{ i.text }}#}
-    {#    {% endfor %}#}
     </div>
 
     {% for i in comment %}
@@ -32,4 +28,7 @@
         {% endbuttons %}
     </form>
     </div>
+    {% for i in last_news %}
+        {{ i.title }}
+    {% endfor %}
 {% endblock %}

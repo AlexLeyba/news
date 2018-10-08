@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Результаты поиска: {{ founded.count }}</h3>
+                {% for i in founded %}
+                    <h4><a href="{% url 'single' pk=i.id %}">{{ i.title }}</a></h4>
+                    <img src="{{MEDIA_URL}}{{ i.picture.url }}" alt="">
+                    <p>{{ i.text|safe|truncatewords:100 }}</p>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

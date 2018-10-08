@@ -1,17 +1,20 @@
-# поиск по названию статьи, в конце статьи выводить 6 статей из той же категории, выводить 5 статей за последние 3 дня
+# привести все с норм вид, сделать вход по соц сетям
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from one_app.models import News, Comment, Category
 from one_app.forms import CommentForm, Search
 from django.db.models import Q
-
+from django.core.paginator import Paginator
 
 class ListNews(View):
     """Список новостей"""
 
     def get(self, request):
         news = News.objects.all()
-        return render(request, "one_app/list.html", {"news": news})
+        paginator = Paginator(news, 2)
+        page = request.GET.get('page')
+        contacts = paginator.get_page(page)
+        return render(request, "one_app/list.html", {"news": contacts})
 
 
 class OneNew(View):
@@ -21,9 +24,12 @@ class OneNew(View):
         single = News.objects.get(id=pk)
         single.chek += 1
         single.save()
+        last_news = News.objects.order_by('-id')[0:3]
+        cat = News.objects.filter(category=single.category)[0:6]
         comment = Comment.objects.filter(new=pk)
         form = CommentForm()
-        return render(request, "one_app/single.html", {"single": single, "form": form, "comment": comment}, )
+        return render(request, "one_app/single.html", {"single": single, "form": form, "comment": comment,
+                      "last_news": last_news})
 
     def post(self, request, pk):
         form = CommentForm(request.POST)
@@ -56,17 +62,17 @@ class Category_View(View):
 
     def get(self, request, category_slug):
         category = News.objects.filter(category__slug=category_slug)
-        #category.save()
+        # category.save()
         return render(request, "one_app/category.html", {"category": category})
 
 
+class Search_View(View):
+    """Поиск по сайту"""
 
+    def post(self, request, *args, **kwargs):
+        query = self.request.POST.get('q')
+        founded = News.objects.filter(Q(title__icontains=query) | Q(text__icontains=query))
+        return render(request, "one_app/search.html", {"founded": founded})
 
-
-# form = Search(request.POST)
-# if fomr.is_valid():
-#     serch = form.cleaned_data["search"]
-#
-# serch = request.POST.get("search", None)
 
 
