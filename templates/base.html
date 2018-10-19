@@ -117,15 +117,29 @@
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-            Категории
+            Топ колоды
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {% for i in categories %}
+            {% for i in pod_cat %}
+                {% if i.category.slug == 'top_deck' %}
                 <a class="dropdown-item" href="{% url 'category' category_slug=i.slug %}">{{ i.name }}</a>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
-
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            Гайды
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for i in pod_cat %}
+                {% if i.category.slug == 'guide' %}
+                <a class="dropdown-item" href="{% url 'category' category_slug=i.slug %}">{{ i.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
     <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
             <h1 class="display-4 font-italic">Лучшие колоды Hearthstone</h1>

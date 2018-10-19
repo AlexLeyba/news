@@ -13,6 +13,12 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('text',)
 
 
+class PodCategoryAdmin(admin.ModelAdmin):
+    """подкатегория"""
+    list_display = ("name", "slug", "category")
+
+
 admin.site.register(News, PostAdmin)
 admin.site.register(Comment)
 admin.site.register(Category)
+admin.site.register(PodСategory, PodCategoryAdmin)

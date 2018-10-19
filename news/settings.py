@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'one_app',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount.providers.vk',
     'django_summernote',
 ]
 

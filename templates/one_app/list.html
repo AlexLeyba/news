@@ -10,7 +10,7 @@
                     {#                    <strong class="d-inline-block mb-2 text-primary">World</strong>#}
                     <h3 class="mb-0">
                         <a class="text-dark" href="{% url 'single' pk=i.id %}">{{ i.title }}</a>
-                        <img style="width: 150px; height: 100px;" src="{{ MEDIA_URL }}{{ i.picture.url }}" alt="">
+                        {% if i.picture%}<img style="width: 150px; height: 100px;" src="{{ MEDIA_URL }}{{ i.picture.url }}" alt="">{% endif %}
                     </h3>
                     <div class="mb-1 text-muted">{{ i.date }}</div>
                     <p class="card-text mb-auto">{{ i.text|safe|truncatewords:100 }}</p>
